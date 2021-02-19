@@ -1,0 +1,38 @@
+.landing-container {
+  margin-top: 10px;
+  text-align: center;
+  color: #f76707;
+  font-size: 1.4em;
+}
+.subtitle-paragraph {
+  margin: 10px 5px 10px 5px;
+  font-size: 0.8em;
+  color: black;
+}
+.title-text {
+  font-family: "Trispace";
+  margin: 5px;
+}
+.img {
+  width: 200px;
+  height: auto;
+  transform: rotate(3deg);
+}
+.app-mobile-presentation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.app-mobile-buttons {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  border-style: none;
+  border-radius: 10px;
+  background: #f76707;
+  color: white;
+  font-family: "Trispace", sans-serif;
+}
+.button-container {
+  display: flex;
+}
