@@ -15,3 +15,16 @@ body {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
 }
+.cont {
+  display: flex;
+  flex-direction: column;
+  background: lightblue;
+  padding: 5px;
+}
+.asd {
+  display: flex;
+  background: lightcoral;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 1rem;
+}

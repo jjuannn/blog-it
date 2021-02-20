@@ -1,4 +1,5 @@
 import "./App.css";
+import "./styles/breakpoints.css";
 import NavigationBar from "./components/nav/nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/landing/landing";
@@ -14,7 +15,9 @@ function App() {
             <LandingPage />
           </Route>
           <Route path="/prueba" exact>
-            <p>Probando</p>
+            <div className="cont">
+              <div className="asd">probanding</div>
+            </div>
           </Route>
         </Switch>
         <PageFooter />
