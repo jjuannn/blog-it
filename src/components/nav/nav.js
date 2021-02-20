@@ -19,7 +19,7 @@ export default function NavigationBar() {
             </a>
           </li>
           <li className="list-item">
-            <a className="nav-text" href="/prueba">
+            <a className="nav-text" href="/about">
               About
             </a>
           </li>

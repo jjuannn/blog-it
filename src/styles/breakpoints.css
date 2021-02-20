@@ -50,4 +50,8 @@
     position: relative;
     bottom: 30px;
   }
+
+  .about-text {
+    font-size: 1.2em !important;
+  }
 }

@@ -1,0 +1,13 @@
+.about-section {
+  padding: 2% 10%;
+  background: #f76707;
+  margin: 2% 15%;
+  border-radius: 10px;
+  margin-bottom: 65px;
+}
+
+.about-text {
+  font-family: "Trispace";
+  font-size: 0.8em;
+  color: #fff4e6;
+}

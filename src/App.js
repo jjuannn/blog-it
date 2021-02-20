@@ -4,7 +4,7 @@ import NavigationBar from "./components/nav/nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/landing/landing";
 import PageFooter from "./components/footer/footer";
-
+import AboutPage from "./pages/about/about";
 function App() {
   return (
     <>
@@ -14,10 +14,8 @@ function App() {
           <Route path="/" exact>
             <LandingPage />
           </Route>
-          <Route path="/prueba" exact>
-            <div className="cont">
-              <div className="asd">probanding</div>
-            </div>
+          <Route path="/about" exact>
+            <AboutPage />
           </Route>
         </Switch>
         <PageFooter />
@@ -25,5 +23,4 @@ function App() {
     </>
   );
 }
-
 export default App;
