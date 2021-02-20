@@ -3,9 +3,9 @@ import Divider from "../divider/divider";
 import "./footer.css";
 export default function PageFooter() {
   return (
-    <>
+    <div className="page-footer">
       <Divider />
-      <div className="page-footer">
+      <div>
         <ul className="footer-list">
           <li className="footer-list-item">
             <a href="#">
@@ -29,6 +29,6 @@ export default function PageFooter() {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }

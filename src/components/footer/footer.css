@@ -2,6 +2,9 @@
   background: #f76707;
   width: 100vw;
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
 }
 .footer-list {
   display: flex;
@@ -21,24 +24,3 @@
 .list-item-text {
   color: #fff4e6;
 }
-/*
-FULL WIDTH STYLES DESKTOP
-
-
-.page-footer {
-  background: #f76707;
-  width: 100vw;
-  padding-bottom: 20px;
-}
-.footer-list {
-  display: flex;
-  flex-grow: 1;
-  justify-content: space-evenly;
-}
-.footer-list-item {
-  margin: 15px;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-*/
