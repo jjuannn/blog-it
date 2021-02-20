@@ -1,0 +1,53 @@
+@media screen and (min-width: 768px) {
+  .nav-container {
+    flex-direction: row !important;
+    align-items: center;
+  }
+  .nav-list {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-end !important;
+  }
+  .list-item {
+    margin: 0px 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Montserrat", sans-serif;
+  }
+  .page-name {
+    font-size: 2em;
+    font-family: "Trispace", sans-serif;
+  }
+
+  .landing-container {
+    padding: 2% 15%;
+    display: flex;
+  }
+
+  .titles-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+  }
+
+  .subtitle-paragraph {
+    font-size: 1em !important;
+  }
+
+  .title-text {
+    font-size: 2em !important;
+  }
+
+  .footer-list {
+    display: flex;
+    flex-direction: row !important;
+    flex-grow: 1;
+    justify-content: space-evenly;
+  }
+
+  .app-mobile-presentation {
+    position: relative;
+    bottom: 30px;
+  }
+}

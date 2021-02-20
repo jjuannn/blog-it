@@ -12,11 +12,14 @@
 .title-text {
   font-family: "Trispace";
   margin: 5px;
+  font-size: 1.2em;
 }
 .img {
   width: 200px;
   height: auto;
-  transform: rotate(3deg);
+}
+.img:hover {
+  transform: rotate(5deg);
 }
 .app-mobile-presentation {
   display: flex;

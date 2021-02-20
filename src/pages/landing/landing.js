@@ -6,12 +6,14 @@ export default function LandingPage() {
   return (
     <section>
       <div className="landing-container">
-        <strong className="title-text">
-          Share your thoughts with everyone...
-        </strong>
-        <p className="subtitle-paragraph">
-          ... wherever you want, whenever you want
-        </p>
+        <div className="titles-container">
+          <strong className="title-text">
+            Share your thoughts with everyone...
+          </strong>
+          <p className="subtitle-paragraph">
+            ... wherever you want, whenever you want
+          </p>
+        </div>
         <div className="app-mobile-presentation">
           <img
             src={iphoneImg}
