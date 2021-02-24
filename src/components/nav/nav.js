@@ -14,19 +14,25 @@ export default function NavigationBar() {
         </div>
         <ul className="nav-list">
           <li className="list-item">
+            <strong>
             <a className="nav-text" href="#">
               Posts
             </a>
+            </strong>
           </li>
           <li className="list-item">
+            <strong>
             <a className="nav-text" href="/about">
               About
             </a>
+            </strong>
           </li>
           <li className="list-item">
+            <strong>
             <a className="nav-text" href="#">
               Creator
             </a>
+            </strong>
           </li>
         </ul>
       </nav>
