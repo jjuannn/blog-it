@@ -31,7 +31,7 @@ export default function UserFormPage(){
             <label htmlFor="username">Username</label>
             <input className="form-input" value={username} onChange={setUsernameValue} name="username" type="text"/>
             <label htmlFor="password">Password</label>
-            <input className="form-input" value={password} onChange={setPasswordValue} name="password" type="text" /*CAMBIAR TYPE A PASSWORD*//> 
+            <input className="form-input" value={password} onChange={setPasswordValue} name="password" type="password" /*CAMBIAR TYPE A PASSWORD*//> 
             <button className="form-buttons" type="submit">Submit</button>
         </form>
     )

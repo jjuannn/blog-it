@@ -1,0 +1,27 @@
+.form-buttons {
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border-style: none;
+    border-radius: 10px;
+    background: #f76707;
+    color: white;
+    font-family: "Trispace", sans-serif;
+    width: max-content;
+    align-self: flex-end;
+}
+
+.user-form{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: auto;
+}
+
+.form-input{
+    line-height: 25px;
+    border: 1px solid #f76707;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 5px;
+}

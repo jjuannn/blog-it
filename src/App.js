@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/landing/landing";
 import PageFooter from "./components/footer/footer";
 import AboutPage from "./pages/about/about";
+import UserForm from "./pages/form/userForm"
+
 function App() {
   return (
     <>
@@ -16,6 +18,9 @@ function App() {
           </Route>
           <Route path="/about" exact>
             <AboutPage />
+          </Route>
+          <Route path="/register" exact>
+            <UserForm/>
           </Route>
         </Switch>
         <PageFooter />
