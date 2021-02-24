@@ -2,7 +2,9 @@ require("dotenv").config({ path: "../.env" });
 const express = require("express");
 
 const app = express();
-
+const passport = require("passport")
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -10,7 +12,6 @@ app.use(
   })
 );
 app.use(express.static("api"));
-
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

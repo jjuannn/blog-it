@@ -3,8 +3,8 @@ module.exports = class UserService {
     this.UserRepository = UserRepository;
   }
 
-  testService() {
+  testService(user) {
     console.log("Service working");
-    this.UserRepository.testRepository();
+    this.UserRepository.testRepository(user);
   }
 };

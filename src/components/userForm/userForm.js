@@ -21,7 +21,7 @@ export default function UserFormPage(){
         axios({
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
-            url: "http://localhost:8080/users",
+            url: "http://localhost:8080/users/register",
             data: data
         });
     }

@@ -4,7 +4,9 @@ const {
   UserService,
   UserModel,
 } = require("../module/user/module.js");
-
+const passport = require("passport")
+const LocalStrategy = require("passport-local")
+const bcrypt = require("bcrypt")
 const { Sequelize } = require("sequelize");
 const { default: DIContainer, object, get, factory } = require("rsdi");
 const multer = require("multer");
@@ -36,15 +38,18 @@ function configureUserModel(container) {
 }
 function addUserModuleDefinitions(container) {
   container.addDefinitions({
-    UserController: object(UserController).construct(get("UserService")),
+    UserController: object(UserController).construct(get("UserService"), get("passport"), get("LocalStrategy")),
     UserService: object(UserService).construct(get("UserRepository")),
-    UserRepository: object(UserRepository).construct(get("UserModel")),
+    UserRepository: object(UserRepository).construct(get("UserModel"), get("bcrypt")),
     UserModel: factory(configureUserModel),
   });
 }
 
 function addCommonDefinitions(container) {
   container.addDefinitions({
+    passport,
+    LocalStrategy,
+    bcrypt,
     Sequelize: factory(configureDatabase),
     session: factory(configureSession),
   });

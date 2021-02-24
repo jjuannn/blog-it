@@ -1,26 +1,30 @@
 const AbstractRepository = require("./abstract/abstractRepository.js");
 
 class UserRepository extends AbstractRepository {
-  constructor(UserModel) {
+  constructor(UserModel, bcrypt) {
     super();
     this.UserModel = UserModel;
+    this.bcrypt = bcrypt
   }
 
   // testRepository() {
   //   console.log("Repository working");
   // }
 
-  async testRepository() {
+  async testRepository(user) {
+    console.log(user.password)
     console.log("repository working");
-    const newRental = { username: "asd1", password: "12345" };
     const buildOptions = { isNewRecord: true };
 
-    let saveRental;
-    saveRental = await this.UserModel.build(newRental, buildOptions);
-    saveRental.setDataValue("status", "active");
+    let newUser;
+    newUser = await this.UserModel.build(user, buildOptions);
 
-    saveRental = await saveRental.save();
-    console.log(await saveRental);
+    const salt = await this.bcrypt.genSalt(10)
+    const hash = await this.bcrypt.hash(user.password, salt)
+
+    newUser.password = await hash
+    newUser = await newUser.save();
+    console.log(await newUser);
   }
 }
 
