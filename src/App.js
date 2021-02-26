@@ -6,7 +6,6 @@ import LandingPage from "./pages/landing/landing";
 import PageFooter from "./components/footer/footer";
 import AboutPage from "./pages/about/about";
 import UserForm from "./pages/form/userForm"
-
 function App() {
   return (
     <>
@@ -19,7 +18,7 @@ function App() {
           <Route path="/about" exact>
             <AboutPage />
           </Route>
-          <Route path="/register" exact>
+          <Route path="/users/:action" exact>
             <UserForm/>
           </Route>
         </Switch>
