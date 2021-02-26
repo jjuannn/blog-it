@@ -6,7 +6,8 @@ const UserRepository = require("./repository/repository.js");
 function initUserModule(app, container) {
   const controller = container.get("UserController");
   controller.configureRoutes(app);
-  controller.configurePassport()
+  controller.configureSignUp()
+  controller.configureSignIn()
 }
 
 module.exports = {
