@@ -15,7 +15,7 @@ export default function NavigationBar() {
         <ul className="nav-list">
           <li className="list-item">
             <strong>
-            <a className="nav-text" href="#">
+            <a className="nav-text" href="/">
               Posts
             </a>
             </strong>
@@ -27,10 +27,17 @@ export default function NavigationBar() {
             </a>
             </strong>
           </li>
-          <li className="list-item">
+          <li className="list-item user-action">
             <strong>
-            <a className="nav-text" href="#">
-              Creator
+            <a className="nav-text" href="/users/login">
+              Login
+            </a>
+            </strong>
+          </li>
+          <li className="list-item user-action">
+            <strong>
+            <a className="nav-text" href="/users/register">
+              Register
             </a>
             </strong>
           </li>
