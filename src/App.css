@@ -21,10 +21,3 @@ body {
   background: lightblue;
   padding: 5px;
 }
-.asd {
-  display: flex;
-  background: lightcoral;
-  flex-grow: 1;
-  justify-content: center;
-  padding: 1rem;
-}
