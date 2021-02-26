@@ -12,16 +12,32 @@ class UserController extends AbstractController {
   configureRoutes(app) {
     const ROUTE_BASE = this.ROUTE_BASE;
 
-    app.post(`${ROUTE_BASE}/register`, this.passport.authenticate("local-signup", {
-      successRedirect: "/users/success",
-      failureRedirect: "/users/failure",
-      failureFlash: true
-    }))
-    app.post(`${ROUTE_BASE}/login`, this.passport.authenticate("local-signin", {
-        successRedirect: "/users/success",
-        failureRedirect: "/users/failure",
-        failureFlash: true
-    }))
+    app.post(`${ROUTE_BASE}/register`, (req, res, next) => {
+      this.passport.authenticate("local-signup", (err, user, info) => {
+        if(err){ 
+          res.status(401).send({error: "Username already taken"})
+        }
+        if(user){ 
+          res.status(200).send(user)
+        }
+        if(info){ 
+          res.status(200).send(info)
+        }
+      })(req, res, next)
+    })
+    app.post(`${ROUTE_BASE}/login`, (req, res, next) => {
+      this.passport.authenticate("local-signin", (err, user, info) => {
+        if(err){ 
+          res.status(401).send(err)
+        }
+        if(user){ 
+          res.status(200).send(user)
+        }
+        if(info){ 
+          res.status(200).send(info)
+        }
+      })(req, res, next)
+    })
     app.get(`${ROUTE_BASE}/success`, this.success.bind(this))
     app.get(`${ROUTE_BASE}/failure`, this.failure.bind(this))
 

@@ -8,23 +8,23 @@ class UserRepository extends AbstractRepository {
   }
 
   async authUser(username, password){
-    console.log("repository authUser")
     const user = await this.UserModel.findOne({where: {username}});
     if (user) {
       const matchPassword = await this.bcrypt.compare(password, user.dataValues.password)
       if(matchPassword){
-        return user
-      } else{
+        const userData = await this.getById(user.dataValues.id)
+        return userData
+      } else {
         throw new Error("Incorrect password")
       }
-    } else{
-      throw new Error("Username not found")
+    } else {
+      console.log("FALLE")
+      throw new Error("Username not exist")
     }
   }
 
   async getById(id){
-    console.log("Repository getById")
-    const user = await this.UserModel.findOne({where: {id}});
+    const user = await this.UserModel.findOne({where: {id}, attributes: ["id", "username"]});
     if (!user) {
       throw new Error("id not found")
     }
@@ -32,7 +32,6 @@ class UserRepository extends AbstractRepository {
   }
 
   async newUser(user) {
-    console.log("repository newUser")
     const { username } = user
     const userExist = await this.UserModel.findOne({where: {username}})
 

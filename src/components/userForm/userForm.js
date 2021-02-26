@@ -25,7 +25,8 @@ export default function UserForm(){
             headers: { 'Content-Type': 'application/json' },
             url: `http://localhost:8080/users/${action}`,
             data: data
-        }).then( res => { console.log(res)});
+        }).then( res => { console.log(res.data)})
+        .catch(err => { console.log(err);});
     }
 
     return(
@@ -33,7 +34,7 @@ export default function UserForm(){
             <label htmlFor="username">Username</label>
             <input className="form-input" autoComplete="username" value={username} onChange={setUsernameValue} name="username" type="text"/>
             <label htmlFor="password">Password</label>
-            <input className="form-input" autoComplete="current-password" value={password} onChange={setPasswordValue} name="password" type="password" /*CAMBIAR TYPE A PASSWORD*//> 
+            <input className="form-input" autoComplete="current-password" value={password} onChange={setPasswordValue} name="password" type="password"/> 
             <button className="form-buttons" type="submit">Submit</button>
         </form>
     )
