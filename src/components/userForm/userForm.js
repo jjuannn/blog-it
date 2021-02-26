@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import axios from "axios"
+import {useParams } from "react-router-dom"
 import "./userForm.css"
-export default function UserFormPage(){
+export default function UserForm(){
+    const { action } = useParams()
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("") 
 
@@ -21,17 +23,17 @@ export default function UserFormPage(){
         axios({
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
-            url: "http://localhost:8080/users/register",
+            url: `http://localhost:8080/users/${action}`,
             data: data
-        });
+        }).then( res => { console.log(res)});
     }
 
     return(
         <form className="user-form" encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}>
             <label htmlFor="username">Username</label>
-            <input className="form-input" value={username} onChange={setUsernameValue} name="username" type="text"/>
+            <input className="form-input" autoComplete="username" value={username} onChange={setUsernameValue} name="username" type="text"/>
             <label htmlFor="password">Password</label>
-            <input className="form-input" value={password} onChange={setPasswordValue} name="password" type="password" /*CAMBIAR TYPE A PASSWORD*//> 
+            <input className="form-input" autoComplete="current-password" value={password} onChange={setPasswordValue} name="password" type="password" /*CAMBIAR TYPE A PASSWORD*//> 
             <button className="form-buttons" type="submit">Submit</button>
         </form>
     )
