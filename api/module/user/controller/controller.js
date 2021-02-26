@@ -12,17 +12,35 @@ class UserController extends AbstractController {
   configureRoutes(app) {
     const ROUTE_BASE = this.ROUTE_BASE;
 
-    app.get(ROUTE_BASE, this.probando.bind(this));
     app.post(`${ROUTE_BASE}/register`, this.passport.authenticate("local-signup", {
       successRedirect: "/users/success",
       failureRedirect: "/users/failure",
       failureFlash: true
     }))
+    app.post(`${ROUTE_BASE}/login`, this.passport.authenticate("local-signin", {
+        successRedirect: "/users/success",
+        failureRedirect: "/users/failure",
+        failureFlash: true
+    }))
     app.get(`${ROUTE_BASE}/success`, this.success.bind(this))
     app.get(`${ROUTE_BASE}/failure`, this.failure.bind(this))
 
   }
-  configurePassport(){
+  configureSignIn(){
+    this.passport.use("local-signin", new this.LocalStrategy({
+      usernameField: "username",
+      passwordField: "password",
+      passReqToCallback: true
+    }, async (req, username, password, done) => {
+      try {
+        const user = await this.UserService.authUser(username, password)
+        return done(null, user)
+      } catch (e) {
+        return done(e)
+      }  
+    }))
+  }
+  configureSignUp(){
     this.passport.use("local-signup", new this.LocalStrategy({
       usernameField: "username",
       passwordField: "password",
@@ -32,35 +50,40 @@ class UserController extends AbstractController {
         username,
         password
       }
-      const a = this.UserService.testService(newUser)
+      try {
+        const user = await this.UserService.newUser(newUser)
+        return done(null, user)
+      } catch (e) {
+        return done(e)
+      }
     }))
-  }
-  /**
-   * @param {import("express").Request} req
-   * @param {import("express").Response} res
-   */
-  probando(req, res) {
-    console.log("Controller User");
-    res.sendStatus(200)
-    this.UserService.testService();
-  }
-  /**
-   * @param {import("express").Request} req
-   * @param {import("express").Response} res
-   */
-  user(req, res){
-    
-    res.sendStatus(200)
-  }
 
+    this.passport.serializeUser((user, done) => {
+      console.log("SERIALIZING")
+      return done(null, user)
+    })
+
+    this.passport.deserializeUser(async(id, done) => {
+      console.log("DESERIALIZING")
+      const findUser = await this.UserService.getById(id)
+      return done(null, findUser)
+    })
+  }
+  /**
+   * @param {import("express").Request} req
+   * @param {import("express").Response} res
+   */
   success(req, res){
     console.log("success")
-    res.sendStatus(200)
+    res.status(200).send({success: true})
   }
-
+  /**
+   * @param {import("express").Request} req
+   * @param {import("express").Response} res
+   */
   failure(req, res){
     console.log("failure")
-    res.sendStatus(200)
+    res.status(401).send({success: false})
   }
 
 

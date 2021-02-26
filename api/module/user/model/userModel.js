@@ -13,6 +13,7 @@ module.exports = class UserModel extends Model {
         },
         username: {
           type: DataTypes.STRING,
+          unique: true,
           allowNull: false,
         },
         password: {
