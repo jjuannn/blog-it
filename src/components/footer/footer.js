@@ -8,7 +8,7 @@ export default function PageFooter() {
       <div>
         <ul className="footer-list">
           <li className="footer-list-item">
-            <a target="_blank" href="https://github.com/jjuannn">
+            <a target="_blank" rel="noreferrer" href="https://github.com/jjuannn">
               <strong className="list-item-text">Contact</strong>
             </a>
           </li>
@@ -23,7 +23,7 @@ export default function PageFooter() {
             </a>
           </li>
           <li className="footer-list-item">
-            <a target="_blank" href="https://github.com/jjuannn/BlogIt">
+            <a target="_blank" rel="noreferrer" href="https://github.com/jjuannn/BlogIt">
               <strong className="list-item-text">Source code</strong>
             </a>
           </li>
