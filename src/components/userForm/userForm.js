@@ -25,8 +25,8 @@ export default function UserForm(){
             headers: { 'Content-Type': 'application/json' },
             url: `http://localhost:8080/users/${action}`,
             data: data
-        }).then( res => { console.log(res.data)})
-        .catch(err => { console.log(err);});
+        }).then(res => console.log(res))
+        .catch(err => {console.log(err.response)});
     }
 
     return(
