@@ -1,6 +1,7 @@
 import React from "react";
 import Divider from "../divider/divider";
 import "./footer.css";
+import { Link } from "react-router-dom"
 export default function PageFooter() {
   return (
     <div className="page-footer">
@@ -8,24 +9,24 @@ export default function PageFooter() {
       <div>
         <ul className="footer-list">
           <li className="footer-list-item">
-            <a target="_blank" rel="noreferrer" href="https://github.com/jjuannn">
+            <Link target="_blank" rel="noreferrer" href="https://github.com/jjuannn">
               <strong className="list-item-text">Contact</strong>
-            </a>
+            </Link>
           </li>
           <li className="footer-list-item">
-            <a href="/faq">
+            <Link href="/faq">
               <strong className="list-item-text">FAQ's</strong>
-            </a>
+            </Link>
           </li>
           <li className="footer-list-item">
-            <a href="/tos">
+            <Link href="/tos">
               <strong className="list-item-text">Terms of service</strong>
-            </a>
+            </Link>
           </li>
           <li className="footer-list-item">
-            <a target="_blank" rel="noreferrer" href="https://github.com/jjuannn/BlogIt">
+            <Link target="_blank" rel="noreferrer" href="https://github.com/jjuannn/BlogIt">
               <strong className="list-item-text">Source code</strong>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

@@ -1,44 +1,44 @@
 import React from "react";
 import "./nav.css";
-
+import { Link } from "react-router-dom"
 export default function NavigationBar() {
   return (
     <header style={{ padding: "2% 15%" }}>
       <nav className="nav-container">
         <div className="nav-title-container">
           <p className="page-name">
-            <a className="page-name-text" href="/">
+            <Link className="page-name-text" href="/">
               BlogIt!
-            </a>
+            </Link>
           </p>
         </div>
         <ul className="nav-list">
           <li className="list-item">
             <strong>
-            <a className="nav-text" href="/">
+            <Link className="nav-text" href="/">
               Posts
-            </a>
+            </Link>
             </strong>
           </li>
           <li className="list-item">
             <strong>
-            <a className="nav-text" href="/about">
+            <Link className="nav-text" href="/about">
               About
-            </a>
+            </Link>
             </strong>
           </li>
           <li className="list-item user-action">
             <strong>
-            <a className="nav-text" href="/users/login">
+            <Link className="nav-text" href="/users/login">
               Login
-            </a>
+            </Link>
             </strong>
           </li>
           <li className="list-item user-action">
             <strong>
-            <a className="nav-text" href="/users/register">
+            <Link className="nav-text" href="/users/register">
               Register
-            </a>
+            </Link>
             </strong>
           </li>
         </ul>

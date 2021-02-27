@@ -2,11 +2,13 @@ import React, { useState } from "react"
 import axios from "axios"
 import {useParams } from "react-router-dom"
 import "./userForm.css"
+
 export default function UserForm(){
     const { action } = useParams()
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("") 
 
+    // MOVER A UN SERVICIO APARTE
     // MOVER A UN SERVICIO APARTE
     const setUsernameValue = (e) => {
         setUsername(e.target.value)
