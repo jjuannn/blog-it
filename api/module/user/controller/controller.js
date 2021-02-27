@@ -1,4 +1,8 @@
 const AbstractController = require("./abstract/abstractController.js");
+const IncorrectPasswordError = require("../repository/error/incorrectPasswordError")
+const UsernameAlreadyTakenError = require("../repository/error/usernameAlreadyTakenError")
+const UserNotFoundError = require("../repository/error/userNotFoundError")
+const { dataToEntity } = require("../mapper/userMapper")
 
 class UserController extends AbstractController {
   constructor(UserService, passport, LocalStrategy) {
@@ -15,7 +19,9 @@ class UserController extends AbstractController {
     app.post(`${ROUTE_BASE}/register`, (req, res, next) => {
       this.passport.authenticate("local-signup", (err, user, info) => {
         if(err){ 
-          res.status(401).send({error: "Username already taken"})
+          if(err instanceof UsernameAlreadyTakenError){
+            res.status(401).send('Username already taken!')
+          }
         }
         if(user){ 
           res.status(200).send(user)
@@ -28,7 +34,12 @@ class UserController extends AbstractController {
     app.post(`${ROUTE_BASE}/login`, (req, res, next) => {
       this.passport.authenticate("local-signin", (err, user, info) => {
         if(err){ 
-          res.status(401).send(err)
+          if(err instanceof IncorrectPasswordError){
+            res.status(401).send('Incorrect Password!')
+          }
+          if(err instanceof UserNotFoundError){
+            res.status(401).send('Username not exist!')
+          }
         }
         if(user){ 
           res.status(200).send(user)
@@ -49,8 +60,9 @@ class UserController extends AbstractController {
       passReqToCallback: true
     }, async (req, username, password, done) => {
       try {
-        const user = await this.UserService.authUser(username, password)
-        return done(null, user)
+        const user = dataToEntity(req.body)
+        const authUser = await this.UserService.authUser(user)
+        return done(null, authUser)
       } catch (e) {
         return done(e)
       }  
@@ -62,10 +74,7 @@ class UserController extends AbstractController {
       passwordField: "password",
       passReqToCallback: true
     }, async (req, username, password, done) => {
-      const newUser = {
-        username,
-        password
-      }
+      const newUser = dataToEntity(req.body)
       try {
         const user = await this.UserService.newUser(newUser)
         return done(null, user)
@@ -75,12 +84,10 @@ class UserController extends AbstractController {
     }))
 
     this.passport.serializeUser((user, done) => {
-      console.log("SERIALIZING")
       return done(null, user)
     })
 
     this.passport.deserializeUser(async(id, done) => {
-      console.log("DESERIALIZING")
       const findUser = await this.UserService.getById(id)
       return done(null, findUser)
     })
@@ -90,7 +97,6 @@ class UserController extends AbstractController {
    * @param {import("express").Response} res
    */
   success(req, res){
-    console.log("success")
     res.status(200).send({success: true})
   }
   /**
@@ -98,7 +104,6 @@ class UserController extends AbstractController {
    * @param {import("express").Response} res
    */
   failure(req, res){
-    console.log("failure")
     res.status(401).send({success: false})
   }
 

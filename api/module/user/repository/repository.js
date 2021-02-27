@@ -1,4 +1,8 @@
 const AbstractRepository = require("./abstract/abstractRepository.js");
+const IncorrectPasswordError = require("./error/incorrectPasswordError")
+const UsernameAlreadyTakenError = require("./error/usernameAlreadyTakenError")
+const UserNotFoundError = require("./error/userNotFoundError")
+const { modelToEntity } = require("../mapper/userMapper")
 
 class UserRepository extends AbstractRepository {
   constructor(UserModel, bcrypt) {
@@ -8,47 +12,48 @@ class UserRepository extends AbstractRepository {
   }
 
   async authUser(username, password){
-    const user = await this.UserModel.findOne({where: {username}});
+    const user = await this.UserModel.findOne({where: {username}, attributes: ["id", "username", "password"]})
     if (user) {
-      const matchPassword = await this.bcrypt.compare(password, user.dataValues.password)
+      const matchPassword = await this.bcrypt.compare(password, user.password)
       if(matchPassword){
-        const userData = await this.getById(user.dataValues.id)
+        const userData = await this.getById(user.id)
         return userData
       } else {
-        throw new Error("Incorrect password")
+        throw new IncorrectPasswordError("Incorrect Password!")
       }
     } else {
-      console.log("FALLE")
-      throw new Error("Username not exist")
+      throw new UserNotFoundError("User not found")
     }
   }
 
   async getById(id){
     const user = await this.UserModel.findOne({where: {id}, attributes: ["id", "username"]});
     if (!user) {
-      throw new Error("id not found")
+      throw new UserNotFoundError("User not found")
     }
-    return user
+    const mappedUser = modelToEntity(user)
+    return mappedUser
   }
 
-  async newUser(user) {
-    const { username } = user
-    const userExist = await this.UserModel.findOne({where: {username}})
+  async newUser(user){
+    const { username, password} = user
 
-    if(userExist){
-      throw new Error("Username is already taken")
+    const userExist = await this.UserModel.findOne({where: {username}, attributes: ["id", "username"]});
+    if(userExist){  
+      throw new UsernameAlreadyTakenError("Username already taken")
     }
 
     const buildOptions = { isNewRecord: true };
     
     let newUser;
-    newUser = await this.UserModel.build(user, buildOptions);
+    newUser = await this.UserModel.build(user, buildOptions)
 
     const salt = await this.bcrypt.genSalt(10)
-    const hash = await this.bcrypt.hash(user.password, salt)
+    const hash = await this.bcrypt.hash(password, salt)
 
     newUser.password = await hash
     newUser = await newUser.save();
+
     const getUser = await this.getById(newUser.dataValues.id)
     return getUser
   }

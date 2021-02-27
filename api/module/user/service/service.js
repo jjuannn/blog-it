@@ -2,18 +2,17 @@ module.exports = class UserService {
   constructor(UserRepository) {
     this.UserRepository = UserRepository;
   }
-  async authUser(username, password){
-    console.log("service authUser")
+  async authUser(userData){
+    const { username, password } = userData
     const user = await this.UserRepository.authUser(username, password)
     return user
   }
 
   async getById(id){
-    console.log("Service getById")
-    return await this.UserRepository.getById(id)
+    const user = await this.UserRepository.getById(id)
+    return user
   }
   async newUser(user) {
-    console.log("service newUser")
     const newUser = await this.UserRepository.newUser(user);
     return newUser
   }
