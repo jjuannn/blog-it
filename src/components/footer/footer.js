@@ -9,22 +9,22 @@ export default function PageFooter() {
       <div>
         <ul className="footer-list">
           <li className="footer-list-item">
-            <Link target="_blank" rel="noreferrer" href="https://github.com/jjuannn">
+            <Link target="_blank" rel="noreferrer" to="https://github.com/jjuannn">
               <strong className="list-item-text">Contact</strong>
             </Link>
           </li>
           <li className="footer-list-item">
-            <Link href="/faq">
+            <Link to="/faq">
               <strong className="list-item-text">FAQ's</strong>
             </Link>
           </li>
           <li className="footer-list-item">
-            <Link href="/tos">
+            <Link to="/tos">
               <strong className="list-item-text">Terms of service</strong>
             </Link>
           </li>
           <li className="footer-list-item">
-            <Link target="_blank" rel="noreferrer" href="https://github.com/jjuannn/BlogIt">
+            <Link target="_blank" rel="noreferrer" to="https://github.com/jjuannn/BlogIt">
               <strong className="list-item-text">Source code</strong>
             </Link>
           </li>

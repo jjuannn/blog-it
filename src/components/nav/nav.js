@@ -7,7 +7,7 @@ export default function NavigationBar() {
       <nav className="nav-container">
         <div className="nav-title-container">
           <p className="page-name">
-            <Link className="page-name-text" href="/">
+            <Link className="page-name-text" to="/">
               BlogIt!
             </Link>
           </p>
@@ -15,28 +15,28 @@ export default function NavigationBar() {
         <ul className="nav-list">
           <li className="list-item">
             <strong>
-            <Link className="nav-text" href="/">
+            <Link className="nav-text" to="/">
               Posts
             </Link>
             </strong>
           </li>
           <li className="list-item">
             <strong>
-            <Link className="nav-text" href="/about">
+            <Link className="nav-text" to="/about">
               About
             </Link>
             </strong>
           </li>
           <li className="list-item user-action">
             <strong>
-            <Link className="nav-text" href="/users/login">
+            <Link className="nav-text" to="/users/login">
               Login
             </Link>
             </strong>
           </li>
           <li className="list-item user-action">
             <strong>
-            <Link className="nav-text" href="/users/register">
+            <Link className="nav-text" to="/users/register">
               Register
             </Link>
             </strong>
