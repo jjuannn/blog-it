@@ -10,7 +10,9 @@
     width: max-content;
     align-self: flex-end;
 }
-
+.error-message{
+    color: red;
+}
 .user-form{
     display: flex;
     flex-direction: column;

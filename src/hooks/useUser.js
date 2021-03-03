@@ -8,12 +8,12 @@ export default function useUser(){
 
     const login = useCallback((action, data) => {
         setState({loading: true, error: null})
-        userAuth(action, data).then((res) => {
+        userAuth(action, data)
+        .then((res) => {
             setState({loading: false, error: null})
             setUser(res)
             window.sessionStorage.setItem("user", JSON.stringify(res))
         }).catch(err => {
-            console.log("failed")
             setState({loading: false, error: err})
         })
     }, [setUser])

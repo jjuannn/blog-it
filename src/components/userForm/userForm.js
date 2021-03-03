@@ -25,15 +25,13 @@ export default function UserForm(){
         setPassword(e.target.value)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         const data = {username, password}
         login(action, data)
     }
 
     if(loading){
         return <LoadingSpinner/>
-    }else if(error){
-        return <h1>Error {console.log(error)}</h1>
     }else{
         return(
             <form className="user-form" encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}>
@@ -41,6 +39,7 @@ export default function UserForm(){
                 <input className="form-input" autoComplete="username" value={username} onChange={setUsernameValue} name="username" type="text"/>
                 <label htmlFor="password">Password</label>
                 <input className="form-input" autoComplete="current-password" value={password} onChange={setPasswordValue} name="password" type="password"/> 
+                {error ? <p className="error-message">{error.message}</p> : ""}
                 <button className="form-buttons" type="submit">Submit</button>
             </form>
         )

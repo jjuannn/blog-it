@@ -9,6 +9,6 @@ export default function userAuth(action, data){
     }).then(res => { 
         return res.data
     }).catch(err => {
-        throw new Error("Failed", err)
+        throw new Error(err.response.data)
     })
 }
