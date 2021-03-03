@@ -37,7 +37,8 @@ export default function UserForm(){
             <form className="user-form" encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
                 <input required 
-                    minLength="4" 
+                    minLength="4"
+                    maxLength="15"
                     className="form-input" 
                     autoComplete="username" 
                     value={username} 
@@ -48,6 +49,7 @@ export default function UserForm(){
                 <label htmlFor="password">Password</label>
                 <input required 
                     minLength="4" 
+                    maxLength="15"
                     className="form-input" 
                     autoComplete="current-password" 
                     value={password} 
