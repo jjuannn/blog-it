@@ -1,15 +1,22 @@
-import React, { useState } from "react"
-import axios from "axios"
-import {useParams } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import {useParams} from "react-router-dom"
 import "./userForm.css"
+import useUser from "../../hooks/useUser"
+import LoadingSpinner from "../loadingSpinner/loadingSpinner"
+const HOME_URL = "http://localhost:3000/"
 
 export default function UserForm(){
     const { action } = useParams()
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("") 
+    const { login, isLogged, error, loading} = useUser()
 
-    // MOVER A UN SERVICIO APARTE
-    // MOVER A UN SERVICIO APARTE
+    useEffect(() => {
+        if(isLogged){ 
+            window.location.replace(HOME_URL)
+        }
+    }, [isLogged])
+
     const setUsernameValue = (e) => {
         setUsername(e.target.value)
     }   
@@ -19,25 +26,23 @@ export default function UserForm(){
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
         const data = {username, password}
-        console.log(data)
-        axios({
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            url: `http://localhost:8080/users/${action}`,
-            data: data
-        }).then(res => console.log(res))
-        .catch(err => {console.log(err.response)});
+        login(action, data)
     }
 
-    return(
-        <form className="user-form" encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input className="form-input" autoComplete="username" value={username} onChange={setUsernameValue} name="username" type="text"/>
-            <label htmlFor="password">Password</label>
-            <input className="form-input" autoComplete="current-password" value={password} onChange={setPasswordValue} name="password" type="password"/> 
-            <button className="form-buttons" type="submit">Submit</button>
-        </form>
-    )
+    if(loading){
+        return <LoadingSpinner/>
+    }else if(error){
+        return <h1>Error {console.log(error)}</h1>
+    }else{
+        return(
+            <form className="user-form" encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}>
+                <label htmlFor="username">Username</label>
+                <input className="form-input" autoComplete="username" value={username} onChange={setUsernameValue} name="username" type="text"/>
+                <label htmlFor="password">Password</label>
+                <input className="form-input" autoComplete="current-password" value={password} onChange={setPasswordValue} name="password" type="password"/> 
+                <button className="form-buttons" type="submit">Submit</button>
+            </form>
+        )
+    }
 }
