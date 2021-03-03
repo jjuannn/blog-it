@@ -17,9 +17,8 @@
 .img {
   width: 200px;
   height: auto;
-}
-.img:hover {
-  transform: rotate(5deg);
+  transform: scale(1.3);
+  margin-left: 10px;
 }
 .app-mobile-presentation {
   display: flex;
@@ -36,6 +35,6 @@
   color: white;
   font-family: "Trispace", sans-serif;
 }
-.button-container {
-  display: flex;
+.buttons-container {
+  z-index: 5;
 }

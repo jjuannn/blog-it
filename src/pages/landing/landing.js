@@ -1,6 +1,6 @@
 import React from "react";
 import "./landing.css";
-import iphoneImg from "../../assets/iphone-img.png";
+import iphoneImg from "../../assets/devices.png";
 
 export default function LandingPage() {
   return (
