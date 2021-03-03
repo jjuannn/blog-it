@@ -25,7 +25,8 @@ export default function UserForm(){
         setPassword(e.target.value)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         const data = {username, password}
         login(action, data)
     }      
