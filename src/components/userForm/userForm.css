@@ -27,3 +27,6 @@
     margin-bottom: 20px;
     padding: 5px;
 }
+.form-input:invalid{
+    border: 3px solid #f76707
+}

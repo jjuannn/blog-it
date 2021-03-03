@@ -8,9 +8,9 @@ const HOME_URL = "http://localhost:3000/"
 export default function UserForm(){
     const { action } = useParams()
     const [ username, setUsername ] = useState("")
-    const [ password, setPassword ] = useState("") 
+    const [ password, setPassword ] = useState("")
     const { login, isLogged, error, loading} = useUser()
-
+    
     useEffect(() => {
         if(isLogged){ 
             window.location.replace(HOME_URL)
@@ -28,7 +28,7 @@ export default function UserForm(){
     const handleSubmit = () => {
         const data = {username, password}
         login(action, data)
-    }
+    }      
 
     if(loading){
         return <LoadingSpinner/>
@@ -36,9 +36,25 @@ export default function UserForm(){
         return(
             <form className="user-form" encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
-                <input className="form-input" autoComplete="username" value={username} onChange={setUsernameValue} name="username" type="text"/>
+                <input required 
+                    minLength="4" 
+                    className="form-input" 
+                    autoComplete="username" 
+                    value={username} 
+                    onChange={setUsernameValue} 
+                    name="username" 
+                    type="text"
+                />
                 <label htmlFor="password">Password</label>
-                <input className="form-input" autoComplete="current-password" value={password} onChange={setPasswordValue} name="password" type="password"/> 
+                <input required 
+                    minLength="4" 
+                    className="form-input" 
+                    autoComplete="current-password" 
+                    value={password} 
+                    onChange={setPasswordValue} 
+                    name="password" 
+                    type="password"
+                /> 
                 {error ? <p className="error-message">{error.message}</p> : ""}
                 <button className="form-buttons" type="submit">Submit</button>
             </form>
