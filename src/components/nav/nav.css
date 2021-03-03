@@ -10,6 +10,14 @@
   justify-content: center;
   align-items: center;
 }
+.user-name {
+  margin: 15px 15px;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  background: #f76707;
+}
 .list-item {
   margin: 15px 15px;
   padding: 10px;
@@ -30,10 +38,6 @@
 }
 .nav-text{
   color: inherit
-}
-.user-action{
-  background: #f76707;
-  color: white;
 }
 .user-action:hover{
   background: #fd7e14;
