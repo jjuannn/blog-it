@@ -22,6 +22,7 @@ class UserController extends AbstractController {
           if(err instanceof UsernameAlreadyTakenError){
             res.status(401).send('Username already taken!')
           }
+          res.status(401).send(err)
         }
         if(user){ 
           res.status(200).send(user)
@@ -40,6 +41,7 @@ class UserController extends AbstractController {
           if(err instanceof UserNotFoundError){
             res.status(401).send('Username not exist!')
           }
+          res.status(401).send(err)
         }
         if(user){ 
           res.status(200).send(user)
