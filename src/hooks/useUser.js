@@ -1,4 +1,4 @@
-import {useCallback, useContext, useReducer} from "react"
+import {useContext, useReducer} from "react"
 import {userContext} from "../context/userContext"
 import userAuth from "../services/userAuth"
 
@@ -6,6 +6,11 @@ const ACTIONS = {
     LOADING: "LOADING",
     ERROR: "ERROR",
     SUCCESS: "SUCCESS"
+}
+
+const USER_ACTIONS = {
+    LOGIN_OR_REGISTER: "LOGIN_OR_REGISTER",
+    LOGOUT: "LOGOUT"
 }
 
 function authReducer(state, action){
@@ -29,7 +34,8 @@ const initialValues = {
 }
 
 export default function useUser(){
-    const { user, setUser } = useContext(userContext)
+    const { userValues, userDispatch} = useContext(userContext)
+    const { data } = userValues
     const [ authState, dispatch] = useReducer(authReducer, initialValues)
 
     const login = (action, data) => {
@@ -37,24 +43,24 @@ export default function useUser(){
         userAuth(action, data)
         .then((res) => {
             dispatch({type: ACTIONS.SUCCESS })
-            setUser(res)
+            userDispatch({type: USER_ACTIONS.LOGIN_OR_REGISTER, payload: res})
             window.sessionStorage.setItem("user", JSON.stringify(res))
         }).catch(err => {
             dispatch({type: ACTIONS.ERROR, payload: err})
         })
     }
 
-    const logout = useCallback(() => {
+    const logout = () => {
         window.sessionStorage.removeItem("user")
-        setUser(null)
-    }, [setUser])
+        userDispatch({type: USER_ACTIONS.LOGOUT})
+    }
     
     return {
         login,
         logout,
-        isLogged: Boolean(user && user.username),
+        isLogged: Boolean(data && data.username),
         loading: authState.loading,
         error: authState.error,
-        user
+        data
     }
 }

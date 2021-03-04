@@ -4,7 +4,7 @@ import "./nav.css";
 import { Link } from "react-router-dom"
 
 export default function NavigationBar() {
-  const { isLogged, logout, user } = useUser()
+  const { isLogged, logout, data } = useUser()
   return (
     <header style={{ padding: "2% 15%" }}>
       <nav className="nav-container">
@@ -39,7 +39,7 @@ export default function NavigationBar() {
           </li>
           <li className="user-name">
             <strong>
-              <p className="nav-text">{user.username}</p>
+              <p className="nav-text">{data.username}</p>
             </strong>
           </li>
           </> : <>
