@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import {useParams} from "react-router-dom"
+import {Redirect, useParams} from "react-router-dom"
 import "./userForm.css"
 import useUser from "../../hooks/useUser"
 import LoadingSpinner from "../loadingSpinner/loadingSpinner"
@@ -10,10 +10,11 @@ export default function UserForm(){
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("")
     const { login, isLogged, error, loading} = useUser()
-    
+    const [redirect, setRedirect] = useState(false)
+
     useEffect(() => {
         if(isLogged){ 
-            window.location.replace(HOME_URL)
+            setRedirect(true)
         }
     }, [isLogged])
 
@@ -59,6 +60,7 @@ export default function UserForm(){
                     type="password"
                 /> 
                 {error ? <p className="error-message">{error.message}</p> : ""}
+                {redirect && <Redirect to="/" />}
                 <button className="form-buttons" type="submit">Submit</button>
             </form>
         )
