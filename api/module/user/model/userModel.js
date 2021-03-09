@@ -20,6 +20,10 @@ module.exports = class UserModel extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        profilePicture: {
+          type: DataTypes.STRING,
+          allowNull: false
+        }
       },
       {
         sequelize: sequelizeInstance,

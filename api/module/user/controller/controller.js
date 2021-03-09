@@ -4,12 +4,14 @@ const UsernameAlreadyTakenError = require("../repository/error/usernameAlreadyTa
 const UserNotFoundError = require("../repository/error/userNotFoundError")
 const { dataToEntity } = require("../mapper/userMapper")
 
+
 class UserController extends AbstractController {
-  constructor(UserService, passport, LocalStrategy) {
+  constructor(UserService, passport, LocalStrategy, uploadMiddleware) {
     super();
     this.UserService = UserService;
     this.passport = passport;
     this.LocalStrategy = LocalStrategy;
+    this.uploadMiddleware = uploadMiddleware;
     this.ROUTE_BASE = "/users";
   }
 

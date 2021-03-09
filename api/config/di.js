@@ -20,6 +20,15 @@ function configureDatabase() {
 
   return sequelize;
 }
+
+function configureMulter(){
+  const upload = multer({
+    dest: process.env.UPLOAD_MULTER_DIR
+  })
+
+  return upload
+}
+
 function configureSession() {
   const ONE_WEEK_IN_SECONDS = 604800000;
 
@@ -38,7 +47,7 @@ function configureUserModel(container) {
 }
 function addUserModuleDefinitions(container) {
   container.addDefinitions({
-    UserController: object(UserController).construct(get("UserService"), get("passport"), get("LocalStrategy")),
+    UserController: object(UserController).construct(get("UserService"), get("passport"), get("LocalStrategy"), get("multer")),
     UserService: object(UserService).construct(get("UserRepository")),
     UserRepository: object(UserRepository).construct(get("UserModel"), get("bcrypt")),
     UserModel: factory(configureUserModel),
@@ -50,6 +59,7 @@ function addCommonDefinitions(container) {
     passport,
     LocalStrategy,
     bcrypt,
+    multer: factory(configureMulter),
     Sequelize: factory(configureDatabase),
     session: factory(configureSession),
   });
