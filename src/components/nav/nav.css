@@ -17,6 +17,8 @@
   color: white;
   font-family: "Montserrat", sans-serif;
   background: #f76707;
+  display: flex;
+  align-items: center;
 }
 .list-item {
   margin: 15px 15px;
@@ -41,5 +43,11 @@
 }
 .user-action:hover{
   background: #fd7e14;
+}
+.user-img{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
 }
 
