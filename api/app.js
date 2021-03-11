@@ -11,7 +11,9 @@ app.use(
     extended: true,
   })
 );
+
 app.use(express.static("api"));
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -35,6 +37,13 @@ app.get("/", (req, res) => {
   console.log(process.env.DB_PATH);
   res.send("working");
 });
+
+app.get("/public/user_pictures?:img", (req, res) => {
+  const filename = req.query.img
+  const pathToFile = `${process.env.UPLOAD_MULTER_DIR}/${filename}`
+  res.sendFile(pathToFile, {root: __dirname})
+})
+
 
 const PORT = 8080;
 app.listen(
