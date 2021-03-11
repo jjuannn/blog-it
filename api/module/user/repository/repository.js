@@ -13,7 +13,7 @@ class UserRepository extends AbstractRepository {
 
   async authUser(username, password){
     if(username.length == 0 || username.length == 0){
-      throw new Error("Credentials cannot be empty")
+       throw new Error("Credentials cannot be empty")
     }
     const user = await this.UserModel.findOne({where: {username}, attributes: ["id", "username", "password"]})
     if (user) {
@@ -30,7 +30,7 @@ class UserRepository extends AbstractRepository {
   }
 
   async getById(id){
-    const user = await this.UserModel.findOne({where: {id}, attributes: ["id", "username"]});
+    const user = await this.UserModel.findOne({where: {id}, attributes: ["id", "username", "picture"]});
     if (!user) {
       throw new UserNotFoundError("User not found")
     }

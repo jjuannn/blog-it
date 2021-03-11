@@ -11,7 +11,8 @@ const { Sequelize } = require("sequelize");
 const { default: DIContainer, object, get, factory } = require("rsdi");
 const multer = require("multer");
 const session = require("express-session");
-
+const fs = require("fs")
+const path = require("path")
 function configureDatabase() {
   const sequelize = new Sequelize({
     dialect: "sqlite",
@@ -22,12 +23,18 @@ function configureDatabase() {
 }
 
 function configureMulter(){
-  const upload = multer({
-    dest: process.env.UPLOAD_MULTER_DIR
+  const upload = multer.diskStorage({
+    destination: function(req, file, cb){
+      cb(null, process.env.UPLOAD_MULTER_DIR)
+    },  
+    filename: function (req, file, cb){
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
   })
 
-  return upload
+  return multer({storage: upload})
 }
+
 
 function configureSession() {
   const ONE_WEEK_IN_SECONDS = 604800000;

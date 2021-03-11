@@ -18,7 +18,7 @@ class UserController extends AbstractController {
   configureRoutes(app) {
     const ROUTE_BASE = this.ROUTE_BASE;
 
-    app.post(`${ROUTE_BASE}/register`, (req, res, next) => {
+    app.post(`${ROUTE_BASE}/register`, this.uploadMiddleware.single("picture"),(req, res, next) => {
       this.passport.authenticate("local-signup", (err, user, info) => {
         if(err){ 
           if(err instanceof UsernameAlreadyTakenError){
@@ -34,7 +34,7 @@ class UserController extends AbstractController {
         }
       })(req, res, next)
     })
-    app.post(`${ROUTE_BASE}/login`, (req, res, next) => {
+    app.post(`${ROUTE_BASE}/login`, this.uploadMiddleware.single("picture"), (req, res, next) => {
       this.passport.authenticate("local-signin", (err, user, info) => {
         if(err){ 
           if(err instanceof IncorrectPasswordError){
@@ -78,7 +78,7 @@ class UserController extends AbstractController {
       passwordField: "password",
       passReqToCallback: true
     }, async (req, username, password, done) => {
-      const newUser = dataToEntity(req.body)
+      const newUser = dataToEntity(req.body, req.file)
       try {
         const user = await this.UserService.newUser(newUser)
         return done(null, user)

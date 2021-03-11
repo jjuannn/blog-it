@@ -20,7 +20,7 @@ module.exports = class UserModel extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        profilePicture: {
+        picture: {
           type: DataTypes.STRING,
           allowNull: false
         }
