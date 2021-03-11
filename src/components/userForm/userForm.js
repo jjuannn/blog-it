@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import {Redirect, useParams} from "react-router-dom"
 import "./userForm.css"
 import useUser from "../../hooks/useUser"
 import LoadingSpinner from "../loadingSpinner/loadingSpinner"
-const HOME_URL = "http://localhost:3000/"
 
 export default function UserForm(){
     const { action } = useParams()
@@ -28,15 +27,26 @@ export default function UserForm(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const data = {username, password}
-        login(action, data)
+        let formData = new FormData(formRef.current)
+        
+        if(action === "register"){
+            const file = imgRef.current.files[0]
+            const fileUrl = URL.createObjectURL(file)
+            
+            formData.append("picture", fileUrl)
+        }
+
+        login(action, formData)
     }      
+
+    const imgRef = useRef(null)
+    const formRef = useRef(null)
 
     if(loading){
         return <LoadingSpinner/>
     }else{
         return(
-            <form className="user-form" encType="application/x-www-form-urlencoded" onSubmit={handleSubmit}>
+            <form ref={formRef} className="user-form" encType="multipart/form-data" onSubmit={handleSubmit}>
                 <label htmlFor="username">Username</label>
                 <input required 
                     minLength="4"
@@ -59,6 +69,14 @@ export default function UserForm(){
                     name="password" 
                     type="password"
                 /> 
+                { action === "login" ? "" : 
+                    <input required
+                    className="form-input" 
+                    ref={imgRef} 
+                    type="file" 
+                    name="picture"
+                    /> 
+                }
                 {error ? <p className="error-message">{error.message}</p> : ""}
                 {redirect && <Redirect to="/" />}
                 <button className="form-buttons" type="submit">Submit</button>
