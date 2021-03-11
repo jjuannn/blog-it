@@ -41,7 +41,7 @@ export default function NavigationBar() {
             <strong>
               <p className="nav-text">{data.username}</p>
             </strong>
-            <img src={data.picture}  className="user-img"/>
+            <img src={data.picture} alt="" className="user-img"/>
           </li>
           </> : <>
           <li className="list-item">
