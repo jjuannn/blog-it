@@ -1,0 +1,40 @@
+.post-card{
+    background: #ffe8cc;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+}
+.post-header{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.post-body{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.post-text{
+    margin-bottom: 10px;
+}
+.post-img{
+    align-self: center;
+    max-height: 170px;
+    max-width: 300px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* SETEAR width Y height fijos para resoluciones mayores */
+}
+.post-title{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.author-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
