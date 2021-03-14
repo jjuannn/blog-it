@@ -1,0 +1,26 @@
+.post-container{
+    padding: 20px
+    
+}
+.timeline-title{
+    margin: auto;
+    font-size: 30px;
+    color: #fd7e14;
+}
+.new-post-button{
+    display: inline-block;
+    border: none;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    background: #f76707;
+    display: flex;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.button-text{
+    font-weight: bolder;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
