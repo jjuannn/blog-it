@@ -55,4 +55,18 @@
   .about-text {
     font-size: 1.2em !important;
   }
+
+  .post-img{
+    max-width: 600px !important; 
+    max-height: 325px !important;
+  }
+
+  .text-area{
+    min-width: 98% !important;
+    max-width: 98% !important;
+  }
+
+  .create-page-title{
+    font-size: 30px !important;
+  }
 }
