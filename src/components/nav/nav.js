@@ -18,7 +18,7 @@ export default function NavigationBar() {
         <ul className="nav-list">
           <li className="list-item">
             <strong>
-            <Link className="nav-text" to="/">
+            <Link className="nav-text" to="/posts">
               Posts
             </Link>
             </strong>
