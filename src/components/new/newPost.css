@@ -1,0 +1,36 @@
+.form-input{
+    line-height: 25px;
+    border: 1px solid #f76707;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+.post-form{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin: auto;
+}
+.form-buttons {
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border-style: none;
+    border-radius: 10px;
+    background: #f76707;
+    color: white;
+    font-family: "Trispace", sans-serif;
+    width: max-content;
+    align-self: flex-end;
+}
+.text-area{
+    min-width: 160px;
+    width: 160px;
+    max-width: 160px;
+
+    max-height: 240px;
+    min-height: 50px;
+}
+.error-message{
+    color: red;
+}
