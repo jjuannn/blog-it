@@ -8,7 +8,7 @@ app.use(passport.session())
 app.use(express.json());
 app.use(
   express.urlencoded({
-    extended: true,
+    extended: false,
   })
 );
 
@@ -28,7 +28,9 @@ const expSession = container.get("session");
 app.use(expSession);
 
 const { initUserModule } = require("./module/user/module.js");
+const { initPostModule } = require("./module/post/module")
 initUserModule(app, container);
+initPostModule(app, container)
 
 const mainDb = container.get("Sequelize");
 mainDb.sync();
@@ -44,6 +46,11 @@ app.get("/public/user_pictures?:img", (req, res) => {
   res.sendFile(pathToFile, {root: __dirname})
 })
 
+app.get("/public/posts_pictures?:img", (req, res) => {
+  const filename = req.query.img
+  const pathToFile = `${process.env.UPLOAD_POSTS_IMG_DIR}/${filename}`
+  res.sendFile(pathToFile, {root: __dirname})
+})
 
 const PORT = 8080;
 app.listen(
