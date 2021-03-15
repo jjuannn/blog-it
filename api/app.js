@@ -16,6 +16,7 @@ app.use(express.static("api"));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -36,7 +37,6 @@ const mainDb = container.get("Sequelize");
 mainDb.sync();
 
 app.get("/", (req, res) => {
-  console.log(process.env.DB_PATH);
   res.send("working");
 });
 
@@ -55,5 +55,5 @@ app.get("/public/posts_pictures?:img", (req, res) => {
 const PORT = 8080;
 app.listen(
   process.env.PORT || PORT,
-  console.log(`backend listening at port ${PORT}`)
+  console.log(`Backend listening at port ${PORT}`)
 );
