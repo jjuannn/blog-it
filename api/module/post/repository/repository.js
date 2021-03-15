@@ -9,6 +9,23 @@ class PostRepository extends AbstractRepository{
         this.userModel = userModel
     }
 
+    async delete(id){
+        const post = await this.postModel.findByPk(id)
+        await post.destroy()
+
+        return true
+    }
+
+    async getAll(){
+        const posts = await this.postModel.findAll({
+            include: [{model: this.userModel}],
+            order: [
+                ['id', 'DESC']
+            ]
+        })
+
+        return posts.map(post => modelToEntity(post))
+    }
     async create(post){
         const buildOptions = { isNewRecord: true };
     

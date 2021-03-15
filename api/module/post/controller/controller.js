@@ -10,17 +10,43 @@ class PostController extends AbstractController{
     }
 
     configureRoutes(app){
+        app.get(`${this.ROUTE_BASE}/all`, this.getAll.bind(this))
         app.post(`${this.ROUTE_BASE}/create`,
             this.uploadMiddleware.single("picture") ,
             this.create.bind(this)
         )
+        app.delete(`${this.ROUTE_BASE}/delete?:img`, this.delete.bind(this))
     }
-    
     /**
-   * @param {import("express").Request} req
-   * @param {import("express").Response} res
+    * @param {import("express").Request} req
+    * @param {import("express").Response} res
+    */
+    async delete(req, res){
+        const {id} = req.query    
+        try {
+            await this.postService.delete(id)
+            res.status(200).send("Deleted successfuly")
+        } catch(e){
+            res.status(400).send("Something failed :( Try again!")
+        }
+    }
+    /**
+    * @param {import("express").Request} req
+    * @param {import("express").Response} res
+    */
+    async getAll(req, res){
+        try{    
+            const posts = await this.postService.getAll()
+            res.status(200).send(posts)
+        } catch(e){
+            res.send(400).send("Failed getting posts :( Try again!")
+        }
+    }
+    /**
+    * @param {import("express").Request} req
+    * @param {import("express").Response} res
    */
-    create(req, res){
+    async create(req, res){
         let post
         try{
             if(req.file){
@@ -28,10 +54,9 @@ class PostController extends AbstractController{
             } else {
                 post = dataToEntity(req.body)
             }
-            this.postService.create(post)
+            await this.postService.create(post)
             res.status(200).send("Published!")
         } catch (err){
-            console.log(err)
             res.status(400).send("Something went wrong :( Try again!")
         }
     }
