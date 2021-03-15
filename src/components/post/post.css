@@ -38,3 +38,7 @@
     height: 50px;
     border-radius: 50%;
 }
+.delete-post{
+    margin-left: auto;
+    cursor: pointer;
+}
