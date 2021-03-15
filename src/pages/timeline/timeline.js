@@ -1,62 +1,35 @@
-import React, { useState } from "react"
+import React from "react"
 import Post from "../../components/post/post"
+import LoadingSpinner from "../../components/loadingSpinner/loadingSpinner"
 import "./timeline.css"
-import vertical from "../../assets/1510013.jpg"
-import horizontal from "../../assets/1510004.jpg"
+import usePosts from "../../hooks/usePosts"
 import useUser from "../../hooks/useUser"
+import getPosts from "../../services/getPosts"
 
-const list = [
-    {
-        title: "Post Title...",
-        text: "Hello World! This is a test post! I like tomatoes and playing csgo. Have a nice day!", 
-        image: vertical 
-    },
-    {
-        title: "Post Title...",
-        text: "Hello World! This is a test post! I like tomatoes and playing csgo. Have a nice day!", 
-        image: horizontal 
-    },
-    {
-        title: "Post Title...",
-        text: "Hello World! This is a test post! I like tomatoes and playing csgo. Have a nice day!", 
-        image: vertical 
-    },
-    {
-        title: "Post Title...",
-        text: "Hello World! This is a test post! I like tomatoes and playing csgo. Have a nice day!", 
-        image: horizontal 
-    },{
-        title: "Post Title...",
-        text: "Hello World! This is a test post! I like tomatoes and playing csgo. Have a nice day!", 
-        image: horizontal 
-    }
-    ,{
-        title: "Post Title...",
-        text: "Hello World! This is a test post! I like tomatoes and playing csgo. Have a nice day!", 
-        image: vertical 
-    },{
-        title: "Post Title...",
-        text: "Hello World! This is a test post! I like tomatoes and playing csgo. Have a nice day!", 
-        image: vertical 
-    }
-]
-
-export default function Timeline({posts}){
+export default function Timeline(){
     const { isLogged } = useUser()
+    const { loading, data, error } = usePosts(getPosts)
+    
+    if(loading){
+        return <LoadingSpinner/>
+    }
+    if(data){
+        return (    
+            <>  
+                <button className="new-post-button">
+                    <a className="button-text" href={isLogged ? "/posts/new" : "/users/login"}>
+                        New Post
+                    </a>
+                </button>
+                <h3 className="timeline-title">What's happening... </h3>
+                {error && <p>FAILED...</p>}
+                <div className="post-container">
+                    {data.map((post, i ) => {
+                        return <Post {...post} key={i}/>
+                    })}
+                </div>
+            </>
+    )}
 
-    return (    
-        <>  
-            <button className="new-post-button">
-                <a className="button-text" href={isLogged ? "/posts/new" : "/users/login"}>
-                    New Post
-                </a>
-            </button>
-            <h3 className="timeline-title">What's happening... </h3>
-            <div className="post-container">
-                {list.map((post, i ) => {
-                    return <Post {...post} key={i}/>
-                })}
-            </div>
-        </>
-    )
+    return null
 }
