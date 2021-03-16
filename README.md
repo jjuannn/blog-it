@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Welcome to BlogIt 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BlogIt is an application where you can make post about whatever you want (even upload photos!)
 
-## Available Scripts
+* Create an account to start: you only need a username and a password!
 
-In the project directory, you can run:
+* Start publishing: you can post anything! 
 
-### `yarn start`
+* Don't like your post? Just delete it!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Stack used: 
+This application was made with: 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* ⚛️ ReactJS for the UI.
+* 🎯 React Router DOM for the client side routing.
+* 🍀 NodeJS and Express for the backend.
+* 💾 SQLite3 for the database where the users and the posts are saved.
+* 🧊 Sequelize as an ORM 
+* 📋 Passport for the user authentication
+* 👀 [Check the full dependency list](https://github.com/jjuannn/BlogIt/blob/d912b8904a5f695d08f21aa37129339ffb7fc805/package.json#L5)
 
-### `yarn test`
+## Instalation: 
+Follow the following steps for a correct installation:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Run `npm install` to install the dependencies (this could take a while!) 
 
-### `yarn build`
+* Create a file called `.env` in the root directory and past the `.env.dist` content
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Run `npm run dev` to start the app in development mode, and `npm run prod to start in production mode`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Open your browser and go to `http://localhost:3000` to use the app ( the backend server will be running at `http://localhost:8080` )
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Have fun! 
 
-### `yarn eject`
+## TO-DO: 
+Features pending to be added
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* - [ ] Improve authentication implementation
+* - [ ] User profiles pages
+* - [ ] Add a functionality to mark posts as `favorite`
+* - [ ] Testing for front and backend
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
