@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import "./post.css"
 import useUser from "../../hooks/useUser"
 import deletePost from "../../services/deletePost"
@@ -8,12 +8,14 @@ import { useHistory } from "react-router-dom"
 export default function Post({title, text, picture, id, author_id, author_username, author_picture}){
     const { data } = useUser()
     const history = useHistory()
+    const [error, setErrors] = useState("")
 
     const handleDelete = async(id) => {
-        const deleted = await deletePost(id)
-    
-        if(deleted){
+        try {
+            await deletePost(id)
             history.go(0)
+        } catch (err) {
+            setErrors(err.message)
         }
     }
 
@@ -37,6 +39,7 @@ export default function Post({title, text, picture, id, author_id, author_userna
                     {text}
                 </p>
                 {picture ? <img className="post-img" alt="" src={picture}/> : ""}
+                {error ? <p class="text-error">{error}</p> : ""}
             </div>
         </div>
     )
