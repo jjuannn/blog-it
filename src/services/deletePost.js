@@ -7,8 +7,6 @@ export default function deletePost(id){
     }).then(res => {
         return true
     }).catch(err => {
-        console.log(err.response)
-        // return false - return err
-        // falta fixear esto
+        throw new Error(err.response.data)
     })
 }

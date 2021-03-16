@@ -10,7 +10,6 @@ export default function getPosts(){
         const posts = data.map( post => postMapper(post))
         return posts
     }).catch(err => {
-        console.log(err.response)
-        // falta fixear esto
+        throw new Error(err.response.data)
     })
 }
