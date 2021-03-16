@@ -60,7 +60,7 @@ export default function NewPost(){
                     value={title} 
                     onChange={setTitleValue} 
                     name="title" 
-                    maxLength="20" 
+                    maxLength="30" 
                     className="form-input" 
                     type="text" 
                 />
@@ -69,7 +69,7 @@ export default function NewPost(){
                     value={text}
                     onChange={setTextValue}
                     name="text" 
-                    maxLength="150"
+                    maxLength="200"
                     className="form-input text-area"
                     rows="4" cols="50" 
                 />
