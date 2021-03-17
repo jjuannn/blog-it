@@ -1,0 +1,31 @@
+.profile{   
+    padding: 20px;
+}
+.profile-picture{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #f76707;
+}
+.profile-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-name{
+    margin-left: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    background: #f76707;
+    color: white;
+}
+.posts-title{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 30px;
+    color: #f76707
+}
+.user-posts{
+    padding: 20px;
+}
