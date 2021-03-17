@@ -3,9 +3,10 @@
     
 }
 .timeline-title{
-    margin: auto;
-    font-size: 30px;
+    text-align: center;
+    font-size: 16px;
     color: #fd7e14;
+    margin: 20px;
 }
 .new-post-button{
     display: inline-block;
