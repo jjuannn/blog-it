@@ -36,7 +36,14 @@ class PostRepository extends AbstractRepository{
         const getPost = await this.getById(newPost.dataValues.id)
         return getPost
     }
+    async getAllUserPosts(id){
+        const posts = await this.postModel.findAll({
+            where: { "author_id": id}, 
+            include: [{model: this.userModel}]
+        })
+        return posts.map(post => modelToEntity(post))
 
+    }
     async getById(id){
         const post = await this.postModel.findOne({
             where: {id}, 

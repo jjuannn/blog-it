@@ -80,7 +80,13 @@ function configurePostModel(container){
 }
 function addUserModuleDefinitions(container) {
   container.addDefinitions({
-    UserController: object(UserController).construct(get("UserService"), get("passport"), get("LocalStrategy"), get("userStorage")),
+    UserController: object(UserController).construct(
+      get("UserService"),
+      get("PostService"), 
+      get("passport"), 
+      get("LocalStrategy"),
+      get("userStorage")
+    ),
     UserService: object(UserService).construct(get("UserRepository")),
     UserRepository: object(UserRepository).construct(get("UserModel"), get("bcrypt")),
     UserModel: factory(configureUserModel),
@@ -108,8 +114,8 @@ function addCommonDefinitions(container) {
 function configureContainer() {
   const container = new DIContainer();
   addCommonDefinitions(container);
-  addUserModuleDefinitions(container);
   addPostModuleDefinitions(container)
+  addUserModuleDefinitions(container);
   return container;
 }
 

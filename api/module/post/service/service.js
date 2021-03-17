@@ -6,6 +6,12 @@ module.exports = class PostService{
     constructor(userRepository){    
         this.userRepository = userRepository
     }
+
+    async getAllUserPosts(id){
+        const posts = await this.userRepository.getAllUserPosts(id)
+        return posts
+    }
+
     async delete(id){
         await this.userRepository.delete(id)
     }

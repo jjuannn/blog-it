@@ -5,10 +5,11 @@ const UserNotFoundError = require("./error/userNotFoundError")
 const { modelToEntity } = require("../mapper/userMapper")
 
 class UserRepository extends AbstractRepository {
-  constructor(UserModel, bcrypt) {
+  constructor(UserModel, bcrypt, PostModel) {
     super();
     this.UserModel = UserModel;
     this.bcrypt = bcrypt
+    this.PostModel = PostModel
   }
 
   async authUser(username, password){

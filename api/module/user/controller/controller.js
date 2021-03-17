@@ -6,9 +6,10 @@ const { dataToEntity } = require("../mapper/userMapper")
 
 
 class UserController extends AbstractController {
-  constructor(UserService, passport, LocalStrategy, uploadMiddleware) {
+  constructor(UserService, PostService, passport, LocalStrategy, uploadMiddleware) {
     super();
     this.UserService = UserService;
+    this.PostService = PostService
     this.passport = passport;
     this.LocalStrategy = LocalStrategy;
     this.uploadMiddleware = uploadMiddleware;
@@ -53,6 +54,7 @@ class UserController extends AbstractController {
         }
       })(req, res, next)
     })
+    app.get(`${ROUTE_BASE}/profile?:id`, this.getUserById.bind(this))
     app.get(`${ROUTE_BASE}/success`, this.success.bind(this))
     app.get(`${ROUTE_BASE}/failure`, this.failure.bind(this))
 
@@ -95,6 +97,21 @@ class UserController extends AbstractController {
       const findUser = await this.UserService.getById(id)
       return done(null, findUser)
     })
+  }
+    /**
+   * @param {import("express").Request} req
+   * @param {import("express").Response} res
+   */
+  async getUserById(req, res){
+    const {id} = req.query
+    try {
+      const posts = await this.PostService.getAllUserPosts(id)
+      const user = await this.UserService.getById(id)
+      res.status(200).send({posts, user})
+    } catch (err) {
+      console.log(err)
+      res.status(400).send("Something went wrong :( Try again!")
+    }
   }
   /**
    * @param {import("express").Request} req
