@@ -38,9 +38,11 @@ export default function NavigationBar() {
             </strong>
           </li>
           <li className="user-name">
+            <Link to={`/users/profile/${data.id}`} className="nav-text">
             <strong>
-              <p className="nav-text">{data.username}</p>
+              <p>{data.username}</p>
             </strong>
+            </Link>
             <img src={data.picture} alt="" className="user-img"/>
           </li>
           </> : <>

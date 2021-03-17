@@ -2,10 +2,19 @@ import React, { useState } from "react"
 import "./post.css"
 import useUser from "../../hooks/useUser"
 import deletePost from "../../services/deletePost"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 
-export default function Post({title, text, picture, id, author_id, author_username, author_picture}){
+export default function Post({
+    title, 
+    text, 
+    picture, 
+    id, 
+    author_id, 
+    author_username, 
+    author_picture,
+    
+}){
     const { data } = useUser()
     const history = useHistory()
     const [error, setErrors] = useState("")
@@ -23,9 +32,13 @@ export default function Post({title, text, picture, id, author_id, author_userna
         <div className="post-card">
             <div className="post-header">
                 <img className="author-img" src={author_picture} alt="" />
-                <strong style={{marginLeft: "10px"}}>{author_username}</strong>
+                <Link to={`/users/profile/${author_id}`} >
+                    <strong style={{marginLeft: "10px"}}>{author_username}</strong>
+                </Link>
                 { data && data.id ? (data.id === author_id ? 
-                    <p onClick={() => { handleDelete(id)}} className="delete-post"><i class="fas fa-times"></i></p>
+                    <p onClick={() => { 
+                        handleDelete(id)
+                    }} className="delete-post"><i className="fas fa-times"></i></p>
                     : ""
                 ) : ""}
             </div>
@@ -39,7 +52,7 @@ export default function Post({title, text, picture, id, author_id, author_userna
                     {text}
                 </p>
                 {picture ? <img className="post-img" alt="" src={picture}/> : ""}
-                {error ? <p class="text-error">{error}</p> : ""}
+                {error ? <p className="text-error">{error}</p> : ""}
             </div>
         </div>
     )
