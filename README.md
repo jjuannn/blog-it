@@ -36,7 +36,7 @@ Follow the following steps for a correct installation:
 Features pending to be added
 
 * - [ ] Improve authentication implementation
-* - [ ] User profiles pages
+* - [x] User profiles pages
 * - [ ] Add a functionality to mark posts as `favorite`
 * - [ ] Testing for front and backend
 
