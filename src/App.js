@@ -10,6 +10,7 @@ import UserForm from "./pages/form/userForm"
 import Timeline from "./pages/timeline/timeline"
 import NewPost from "./pages/newPost/newPost"
 import UserContextProvider from "./context/userContext"
+import ProfilePage from "./pages/profile/profile"
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="/posts/new" exact>
               <NewPost/>
+            </Route>
+            <Route path="/users/profile/:id" exact>
+              <ProfilePage/>
             </Route>
           </Switch>
           <PageFooter />
