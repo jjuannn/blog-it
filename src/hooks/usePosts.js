@@ -29,21 +29,20 @@ const initialValues = {
 }
 
 
-export default function usePosts(fetchFunction){
+export default function usePosts(fetchFunction, param){
     const [state, dispatch] = useReducer(fetchReducer, initialValues)
-    
     useEffect(() => {
         dispatch({type: ACTIONS.LOADING})
         const getData = async() => {
             try {
-                const apiData = await fetchFunction()
+                const apiData = await fetchFunction(param)
                 dispatch({type: ACTIONS.SUCCESS, payload: apiData})
             } catch(err) {
                 dispatch({type: ACTIONS.FAILURE, payload: err})
             }
         }
         getData()
-    }, [fetchFunction])
+    }, [fetchFunction, param])
 
     return { 
         loading: state.loading,
