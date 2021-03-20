@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 export default function NavigationBar() {
   const { isLogged, logout, data } = useUser()
   return (
-    <header style={{ padding: "2% 15%" }}>
+    <header id="header" style={{ padding: "2% 15%" }}>
       <nav className="nav-container">
         <div className="nav-title-container">
           <p className="page-name">
