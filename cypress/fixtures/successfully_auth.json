@@ -1,0 +1,5 @@
+{
+    "id": 1,
+    "username": "testUser123",
+    "picture": "http://localhost:8080/public/user_pictures?img=1"
+}

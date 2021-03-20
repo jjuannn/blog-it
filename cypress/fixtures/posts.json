@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci augue, ultrices sit amet massa lacinia, elementum viverra urna. Mauris a porta orci, id rhoncus velit.",
+        "title": "Test2",
+        "picture": "http://localhost:8080/public/user_pictures?img=1",
+        "author_id": 1,
+        "author_username": "testUser123",
+        "author_picture": "http://localhost:8080/public/user_pictures?img=1"
+    },
+    {
+        "id": 2,
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci augue, ultrices sit amet massa lacinia, elementum viverra urna. Mauris a porta orci, id rhoncus velit.",
+        "title": "Test3",
+        "picture": null,
+        "author_id": 2,
+        "author_username": "notMe800",
+        "author_picture": "http://localhost:8080/public/user_pictures?img=1"
+    }
+]
