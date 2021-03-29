@@ -1,6 +1,7 @@
 const AbstractRepository = require("./abstractRepository/abstractRepository")
 const { modelToEntity} = require("../mapper/postMapper")
 const NotFoundError = require("./error/notFoundError")
+const UndefinedError = require("./error/undefinedError")
 
 class PostRepository extends AbstractRepository{
     constructor(postModel, userModel){
@@ -10,12 +11,19 @@ class PostRepository extends AbstractRepository{
     }
 
     async delete(id){
+        if(!id){
+            throw new UndefinedError("id cannot be undefined")
+        }
         const post = await this.postModel.findByPk(id)
+
+        if(!post){
+            throw new NotFoundError("post not found")
+        }
         await post.destroy()
 
         return true
     }
-
+    
     async getAll(){
         const posts = await this.postModel.findAll({
             include: [{model: this.userModel}],
@@ -27,6 +35,9 @@ class PostRepository extends AbstractRepository{
         return posts.map(post => modelToEntity(post))
     }
     async create(post){
+        if(!post){
+            throw new UndefinedError("param post cannot be null")
+        }
         const buildOptions = { isNewRecord: true };
     
         let newPost;
@@ -37,6 +48,9 @@ class PostRepository extends AbstractRepository{
         return getPost
     }
     async getAllUserPosts(id){
+        if(!id){
+            throw new UndefinedError("id cannot be undefined")
+        }
         const posts = await this.postModel.findAll({
             where: { "author_id": id}, 
             include: [{model: this.userModel}]
@@ -45,6 +59,9 @@ class PostRepository extends AbstractRepository{
 
     }
     async getById(id){
+        if(!id){
+            throw new UndefinedError("id cannot be null")
+        }
         const post = await this.postModel.findOne({
             where: {id}, 
             attributes: ["id", "text", "title", "picture", "author_id"],

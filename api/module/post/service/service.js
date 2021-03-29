@@ -1,4 +1,3 @@
-const EmptyDataError = require("./error/emptyDataError")
 const InvalidDataError = require("./error/invalidDataError")
 const Post = require("../entity/post")
 
@@ -8,11 +7,17 @@ module.exports = class PostService{
     }
 
     async getAllUserPosts(id){
+        if(id === undefined){
+            throw new InvalidDataError("ID cannot be undefined")
+        }
         const posts = await this.userRepository.getAllUserPosts(id)
         return posts
     }
 
     async delete(id){
+        if(id === undefined){
+            throw new InvalidDataError("ID cannot be undefined")
+        }
         await this.userRepository.delete(id)
     }
 
@@ -22,9 +27,6 @@ module.exports = class PostService{
     }
 
     async create(post){
-        if(!post){
-            throw new EmptyDataError("Post data cannot be empty")
-        }
         if(!(post instanceof Post)){
             throw new InvalidDataError("Post data is not a instance of Post")
         }
