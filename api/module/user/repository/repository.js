@@ -3,7 +3,7 @@ const IncorrectPasswordError = require("./error/incorrectPasswordError")
 const UsernameAlreadyTakenError = require("./error/usernameAlreadyTakenError")
 const UserNotFoundError = require("./error/userNotFoundError")
 const { modelToEntity } = require("../mapper/userMapper")
-
+const EmptyCredentialsError = require("./error/emptyCredentialsError")
 class UserRepository extends AbstractRepository {
   constructor(UserModel, bcrypt, PostModel) {
     super();
@@ -14,7 +14,7 @@ class UserRepository extends AbstractRepository {
 
   async authUser(username, password){
     if(username.length == 0 || username.length == 0){
-       throw new Error("Credentials cannot be empty")
+      throw new EmptyCredentialsError("Credentials cannot be empty")
     }
     const user = await this.UserModel.findOne({where: {username}, attributes: ["id", "username", "password"]})
     if (user) {
@@ -42,7 +42,7 @@ class UserRepository extends AbstractRepository {
   async newUser(user){
     const { username, password} = user
     if(username.length == 0 || username.length == 0){
-      throw new Error("Credentials cannot be empty")
+      throw new EmptyCredentialsError("Credentials cannot be empty")
     }
     const userExist = await this.UserModel.findOne({where: {username}, attributes: ["id", "username"]});
     if(userExist){  
