@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize")
+const {Sequelize} = require("sequelize")
 const PostModel = require("../postModel")
 const UserModel = require("../../../user/model/userModel")
 
